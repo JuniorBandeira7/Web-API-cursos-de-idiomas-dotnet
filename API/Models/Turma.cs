@@ -13,6 +13,6 @@ namespace API.Models
 
         public string nivel { get; set; }
 
-        public ICollection<Aluno> Alunos { get; set; }
+        public ICollection<AlunoTurma> AlunoTurmas { get; set; }
     }
 }

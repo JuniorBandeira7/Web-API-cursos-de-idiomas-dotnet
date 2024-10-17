@@ -11,16 +11,22 @@ namespace API.Context
 
         public DbSet<Turma> turmas { get; set; }
 
+        public DbSet<AlunoTurma> alunoTurmas{ get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Aluno>()
-            .HasMany(e => e.Turmas)
-            .WithMany(c => c.Alunos)
-            .UsingEntity<Dictionary<string, object>>(
-                "AlunoTurma",
-                j => j.HasOne<Turma>().WithMany().HasForeignKey("TurmaId"),
-                j => j.HasOne<Aluno>().WithMany().HasForeignKey("AlunoId")
-            );
+            modelBuilder.Entity<AlunoTurma>()
+            .HasKey(ec => new { ec.AlunoId, ec.TurmaId });
+
+            modelBuilder.Entity<AlunoTurma>()
+                .HasOne(ec => ec.Aluno)
+                .WithMany(e => e.AlunoTurmas)
+                .HasForeignKey(ec => ec.AlunoId);
+
+            modelBuilder.Entity<AlunoTurma>()
+                .HasOne(ec => ec.Turma)
+                .WithMany(c => c.AlunoTurmas)
+                .HasForeignKey(ec => ec.TurmaId);
 
             base.OnModelCreating(modelBuilder);
         }

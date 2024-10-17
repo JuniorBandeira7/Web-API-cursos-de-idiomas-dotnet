@@ -15,6 +15,6 @@ namespace API.Models
 
         public string Email { get; set; }
 
-        public ICollection<Turma> Turmas { get; set; }
+        public ICollection<AlunoTurma> AlunoTurmas { get; set; }
     }
 }
