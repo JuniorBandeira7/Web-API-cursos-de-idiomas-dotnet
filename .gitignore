@@ -1,0 +1,51 @@
+# Arquivos do Visual Studio
+.vscode/
+.vs/
+*.user
+*.suo
+*.sln.docstates
+*.sln.cache
+
+# Pastas de build
+bin/
+obj/
+
+# Diretório de pacotes NuGet
+packages/
+.nuget/
+
+# Arquivos de log e cache
+*.log
+*.tlog
+*.ide
+
+# Configurações locais e de ambiente
+*.env
+*.env.*
+*.launchsettings.json
+
+# Arquivos de backup
+*.bak
+*.old
+*.orig
+*.tmp
+
+# Configurações de dependências gerenciadas
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Arquivos gerados pelo sistema de builds
+*.rsuser
+*.cache
+*.pdb
+*.ilk
+*.pidb
+*.log
+*.mdb
+*.ds_store
+*.swp
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
