@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using API.Models;
 namespace API.helpers
 {
-    public class CadastroUnico
+    public class MatriculaUnicaHelper
     {
             public static bool AlunoJaMatriculado(string alunoCpf, string turmaCodigo, CursoContext context)
             {
