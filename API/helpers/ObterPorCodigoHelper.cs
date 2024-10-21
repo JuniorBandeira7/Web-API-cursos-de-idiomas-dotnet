@@ -7,7 +7,7 @@ namespace API.helpers
     {
             public static (Turma? turma, string? mensagen) ObterPorCodigo(string turmaCodigo, CursoContext context)
             {
-                if (context.turmas.Find(turmaCodigo) == null) return (null, "Usuário não encontrado");
+                if (context.turmas.Find(turmaCodigo) == null) return (null, "Turma não encontrada");
 
                 Turma turma = context.turmas.Find(turmaCodigo);
                 return (turma, null);
