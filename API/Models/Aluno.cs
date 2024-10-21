@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace API.Models
 {
@@ -15,6 +16,7 @@ namespace API.Models
 
         public string Email { get; set; }
 
+        [JsonIgnore]// Usado para corrigir erro de ciclo de objeto
         public ICollection<AlunoTurma> AlunoTurmas { get; set; }
     }
 }
