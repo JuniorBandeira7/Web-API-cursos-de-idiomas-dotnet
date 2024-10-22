@@ -95,7 +95,14 @@ namespace API.Controllers
             alunoBanco.Nome = alunoDto.Nome;
             alunoBanco.Email = alunoDto.Email;
 
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                return StatusCode(500, "Erro ao atualizar aluno: " + ex.Message);
+            }
             
             return Ok(alunoBanco);
         }
@@ -110,7 +117,14 @@ namespace API.Controllers
             if (aluno == null) return NotFound();
 
             _context.Alunos.Remove(aluno);
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                return StatusCode(500, "Erro ao apagar aluno: " + ex.Message);
+            }
 
             return NoContent();
         }
