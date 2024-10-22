@@ -6,7 +6,7 @@ namespace API.helpers
     // Filtra turmas com quantidade especifica de alunos.
     public class FiltroTurmasQtdAlunosHelper
     {
-            public static (List<AlunoTurma>? turmaComQtdXAlunos, string? mensagemErro, bool sucesso) TurmaComXAlunos(int numeroAlunos, CursoContext context)
+            public static (List<Turma>? turmaComQtdXAlunos, string? mensagemErro, bool sucesso) TurmaComXAlunos(int numeroAlunos, CursoContext context)
             {
                 int limite = 5;
 
@@ -14,13 +14,13 @@ namespace API.helpers
                 if (numeroAlunos <= 0) return (null, "Digite um numero válido", false);
 
                 List<AlunoTurma> alunoTurmas = context.alunoTurmas.ToList();
-                List<AlunoTurma> turmaComQtdXAlunos = new List<AlunoTurma>();
+                List<Turma> turmaComQtdXAlunos = new List<Turma>();
 
                 foreach (var matricula in alunoTurmas)
                 {
                     int contador = alunoTurmas.Count(m => m.TurmaId == matricula.TurmaId);
 
-                    if (contador == numeroAlunos && !turmaComQtdXAlunos.Any(t => t.TurmaId == matricula.TurmaId)) turmaComQtdXAlunos.Add(matricula);
+                    if (contador == numeroAlunos && !turmaComQtdXAlunos.Any(t => t.Codigo == matricula.TurmaId)) turmaComQtdXAlunos.Add(context.turmas.Find(matricula.TurmaId));
                 }
                 int numeroDeMatriculas = turmaComQtdXAlunos.Count;
                 if (numeroDeMatriculas < 1) return (null, "Não existe turma com essa quantidade de alunos", false);
