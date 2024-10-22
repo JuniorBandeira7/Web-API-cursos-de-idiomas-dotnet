@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Controllers
 {
     [ApiController]
-    [Route("aluno/[controller]")]
+    [Route("[controller]")]
     public class AlunoController : ControllerBase
     {
         private readonly CursoContext _context;
