@@ -30,7 +30,7 @@ namespace API.Controllers
             if (turma == null) return NotFound(mensagem);
             if (LimiteAlunoHelper.LimiteAluno(turmaCodigo, _context)) return BadRequest("Turma já possui o limite de alunos matriculados");
             if (alunoExistente) return BadRequest("Aluno já cadastrado no sistema");
-            if (!turmaExistente) return BadRequest("Essa turma não existe");
+            if (!turmaExistente) return NotFound("Essa turma não existe");
 
             AlunoTurma matricula = new AlunoTurma{AlunoId = alunoDto.Cpf, TurmaId = turmaCodigo};
 
@@ -79,7 +79,7 @@ namespace API.Controllers
         {
             var (alunosEncontrados, mensagem, sucesso) = PesquisaAlunoPorNomeHelper.PesquisarAlunoPorNome(nome, _context);
 
-            if (!sucesso) return BadRequest(mensagem);
+            if (!sucesso) return NotFound(mensagem);
 
             return Ok(alunosEncontrados);
         }
