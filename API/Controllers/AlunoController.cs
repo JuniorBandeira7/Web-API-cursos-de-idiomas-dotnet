@@ -25,10 +25,12 @@ namespace API.Controllers
         {
             var (turma, mensagem) = ObterPorCodigoHelper.ObterPorCodigo(turmaCodigo, _context);
             var alunoExistente = _context.Alunos.Any(a => a.Cpf == alunoDto.Cpf);
+            var turmaExistente = _context.turmas.Any(t => t.Codigo == turmaCodigo);
             // Validações
             if (turma == null) return NotFound(mensagem);
             if (LimiteAlunoHelper.LimiteAluno(turmaCodigo, _context)) return BadRequest("Turma já possui o limite de alunos matriculados");
             if (alunoExistente) return BadRequest("Aluno já cadastrado no sistema");
+            if (!turmaExistente) return BadRequest("Essa turma não existe");
 
             AlunoTurma matricula = new AlunoTurma{AlunoId = alunoDto.Cpf, TurmaId = turmaCodigo};
 
